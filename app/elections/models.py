@@ -9,7 +9,7 @@ class Time(models.Model):
     end_at = models.DateTimeField('結束時間')
 
     def __str__(self):
-        return 'Vote time range'
+        return '{} - {}'.format(self.start_at, self.end_at)
 
     def clean(self):
         if self.start_at > self.end_at:
