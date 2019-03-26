@@ -31,7 +31,7 @@ class Vote(models.Model):
     email = models.EmailField('電子郵件')
     pool = models.ForeignKey(Pool, models.CASCADE, verbose_name='投票類型')
     candidate = models.ForeignKey('candidates.Candidate', models.CASCADE,
-                                  null=True, verbose_name='候選人')
+                                  null=True, blank=True, verbose_name='候選人')
     is_agree = models.BooleanField('同意票', default=True)
     create_at = models.DateTimeField('投票時間', auto_now_add=True)
 
