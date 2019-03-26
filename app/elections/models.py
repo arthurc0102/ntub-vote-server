@@ -20,6 +20,11 @@ class Vote(models.Model):
     is_agree = models.BooleanField('同意票', default=True)
     create_at = models.DateTimeField('投票時間', auto_now_add=True)
 
+    class Meta:
+        unique_together = (
+            ('email', 'pool'),
+        )
+
     def __str__(self):
         return '{} vote at {}'.format(self.email, self.pool)
 
