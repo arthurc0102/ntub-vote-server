@@ -4,6 +4,21 @@ from django.db import models
 from app.school.models import Department
 
 
+class Time(models.Model):
+    start_at = models.DateTimeField('開始時間')
+    end_at = models.DateTimeField('結束時間')
+
+    def __str__(self):
+        return 'Vote time range'
+
+    def clean(self):
+        if self.start_at > self.end_at:
+            raise ValidationError('Start should be smaller than end.')
+
+        if Time.objects.exists() and not self.pk:
+            raise ValidationError('Time should only have one record.')
+
+
 class Pool(models.Model):
     name = models.CharField('選舉類型', max_length=50, unique=True)
     department = models.ManyToManyField(Department, verbose_name='可參與科系')
