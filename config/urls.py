@@ -17,6 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from app.candidates.views import CandidateViewSet
 from app.elections.views import PoolViewSet
 
 from config.settings import DEBUG
@@ -27,6 +28,7 @@ from rest_framework import routers
 
 route = routers.SimpleRouter()
 route.trailing_slash = ''
+route.register('candidates', CandidateViewSet)
 route.register('vote-pools', PoolViewSet)
 
 

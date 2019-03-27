@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import Candidate
+from .serializers import CandidateSerializer
+
+
+class CandidateViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Candidate.objects.all()
+    serializer_class = CandidateSerializer
