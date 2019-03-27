@@ -47,5 +47,5 @@ class Vote(models.Model):
     def clean(self):
         if (not self.is_agree) and len(self.pool.candidates.all()) != 1:
             raise ValidationError({
-                'is_agree': 'No disagree for more than one candidate.',
+                'is_agree': 'No disagree for this vote pool.',
             })
