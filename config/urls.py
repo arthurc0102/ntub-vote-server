@@ -15,13 +15,23 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from app.elections.views import PoolViewSet
 
 from config.settings import DEBUG
 from config.components.static import MEDIA_ROOT, MEDIA_URL
 
+from rest_framework import routers
+
+
+route = routers.SimpleRouter()
+route.trailing_slash = ''
+route.register('vote-pools', PoolViewSet)
+
 
 urlpatterns = [
+    path('api/v1/', include(route.urls)),
     path('admin/', admin.site.urls),
 ]
 
