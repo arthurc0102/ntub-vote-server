@@ -49,3 +49,8 @@ class Vote(models.Model):
             raise ValidationError({
                 'is_agree': 'No disagree for this vote pool.',
             })
+
+        if self.candidate.pool != self.pool:
+            raise ValidationError({
+                'pool': 'It should be {}.'.format(self.candidate.pool),
+            })
