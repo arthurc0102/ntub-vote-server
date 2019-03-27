@@ -16,10 +16,10 @@ class TimeAdmin(admin.ModelAdmin):
 @admin.register(Pool)
 class PoolAdmin(admin.ModelAdmin):
     list_display = ('name', 'get_departments')
-    filter_horizontal = ('department',)
+    filter_horizontal = ('departments',)
 
     def get_departments(self, obj):
-        return ', '.join([d.name for d in obj.department.all()])
+        return ', '.join([d.name for d in obj.departments.all()])
 
     get_departments.short_description = '可參與科系'
 
