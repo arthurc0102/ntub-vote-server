@@ -5,5 +5,5 @@ from .models import Candidate
 
 @admin.register(Candidate)
 class CandidateAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name')
+    list_display = ('last_name', 'first_name', 'pool')
     list_filter = ('pool',)
