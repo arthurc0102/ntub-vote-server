@@ -19,7 +19,9 @@ class Candidate(models.Model):
     first_name = models.CharField('名字', max_length=20)
     last_name = models.CharField('姓氏', max_length=20)
     system = models.ForeignKey(System, models.PROTECT, verbose_name='學制')
-    department = models.ForeignKey(Department, models.PROTECT, verbose_name='科系')  # NOQA
+    department = models.ForeignKey(Department,
+                                   models.PROTECT,
+                                   verbose_name='科系')
     grade = models.ForeignKey(Grade, models.PROTECT, verbose_name='年級')
     klass = models.ForeignKey(Class, models.PROTECT, verbose_name='班級')
     politics = models.TextField('政見', max_length=1000)
