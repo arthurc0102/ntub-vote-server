@@ -23,7 +23,10 @@ class Candidate(models.Model):
     grade = models.ForeignKey(Grade, models.PROTECT, verbose_name='年級')
     klass = models.ForeignKey(Class, models.PROTECT, verbose_name='班級')
     politics = models.TextField('政見', max_length=1000)
-    pool = models.ForeignKey(Pool, models.PROTECT, verbose_name='選舉類型')
+    pool = models.ForeignKey(Pool,
+                             models.PROTECT,
+                             'candidates',
+                             verbose_name='選舉類型')
 
     def __str__(self):
         return self.full_name()

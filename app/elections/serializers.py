@@ -12,8 +12,8 @@ class PoolSerializer(serializers.ModelSerializer):
 
 
 class PoolAndCandidateSerializer(serializers.ModelSerializer):
-    candidate_set = PoolCandidateSerializer(many=True, read_only=True)
+    candidates = PoolCandidateSerializer(many=True, read_only=True)
 
     class Meta:
         model = Pool
-        fields = ('id', 'name', 'candidate_set')
+        fields = ('id', 'name', 'candidates')
