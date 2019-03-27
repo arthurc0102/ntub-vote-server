@@ -1,10 +1,10 @@
-from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework import viewsets
 
 from .models import Pool
 from .serializers import PoolSerializer, PoolAndCandidateSerializer
 
 
-class PoolViewSet(ReadOnlyModelViewSet):
+class PoolViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Pool.objects.all()
     serializer_class = PoolSerializer
 
