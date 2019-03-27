@@ -24,7 +24,7 @@ class Candidate(models.Model):
                                    verbose_name='科系')
     grade = models.ForeignKey(Grade, models.PROTECT, verbose_name='年級')
     klass = models.ForeignKey(Class, models.PROTECT, verbose_name='班級')
-    politics = models.TextField('政見', max_length=1000)
+    politics = models.TextField('政見', max_length=1000, blank=True)
     pool = models.ForeignKey(Pool,
                              models.PROTECT,
                              'candidates',
