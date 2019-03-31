@@ -17,6 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from app.authorization.views import login
 from app.candidates.views import CandidateViewSet
 from app.elections.views import PoolViewSet
 
@@ -34,6 +35,7 @@ route.register('vote-pools', PoolViewSet)
 
 urlpatterns = [
     path('api/v1/', include(route.urls)),
+    path('auth/login', login, name='auth-login'),
     path('admin/', admin.site.urls),
 ]
 

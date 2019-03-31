@@ -16,6 +16,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 pillow = "*"
 django-cleanup = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
