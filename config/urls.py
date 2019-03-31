@@ -34,7 +34,7 @@ route.register('vote-pools', PoolViewSet)
 
 
 urlpatterns = [
-    path('api/v1/', include(route.urls)),
+    path('', include(route.urls)),
     path('auth/login', login, name='auth-login'),
     path('admin/', admin.site.urls),
 ]
