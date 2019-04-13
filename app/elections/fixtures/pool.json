@@ -1,0 +1,140 @@
+[
+  {
+    "model": "elections.pool",
+    "pk": 1,
+    "fields": {
+      "name": "\u6703\u9577",
+      "departments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 2,
+    "fields": {
+      "name": "\u5b78\u751f\u4ee3\u8868",
+      "departments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 3,
+    "fields": {
+      "name": "\u6703\u8a08\u8cc7\u8a0a\u7cfb\u8b70\u54e1",
+      "departments": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 4,
+    "fields": {
+      "name": "\u8ca1\u52d9\u91d1\u878d\u7cfb\u8b70\u54e1",
+      "departments": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 5,
+    "fields": {
+      "name": "\u8ca1\u653f\u7a05\u52d9\u7cfb\u8b70\u54e1",
+      "departments": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 6,
+    "fields": {
+      "name": "\u570b\u969b\u5546\u52d9\u7cfb\u8b70\u54e1",
+      "departments": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 7,
+    "fields": {
+      "name": "\u4f01\u696d\u7ba1\u7406\u7cfb\u8b70\u54e1",
+      "departments": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 8,
+    "fields": {
+      "name": "\u8cc7\u8a0a\u7ba1\u7406\u7cfb\u8b70\u54e1",
+      "departments": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 9,
+    "fields": {
+      "name": "\u61c9\u7528\u5916\u8a9e\u7cfb\u8b70\u54e1",
+      "departments": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 10,
+    "fields": {
+      "name": "\u6578\u4f4d\u591a\u5a92\u9ad4\u8a2d\u8a08\u7cfb\u8b70\u54e1",
+      "departments": [
+        8
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 11,
+    "fields": {
+      "name": "\u5546\u696d\u8a2d\u8a08\u7ba1\u7406\u7cfb\u8b70\u54e1",
+      "departments": [
+        9
+      ]
+    }
+  },
+  {
+    "model": "elections.pool",
+    "pk": 12,
+    "fields": {
+      "name": "\u5546\u54c1\u5275\u610f\u7d93\u71df\u7cfb\u8b70\u54e1",
+      "departments": [
+        10
+      ]
+    }
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "model": "school.department",
+    "pk": 1,
+    "fields": {
+      "name": "\u6703\u8a08\u8cc7\u8a0a\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 2,
+    "fields": {
+      "name": "\u8ca1\u52d9\u91d1\u878d\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 3,
+    "fields": {
+      "name": "\u8ca1\u653f\u7a05\u52d9\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 4,
+    "fields": {
+      "name": "\u570b\u969b\u5546\u52d9\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 5,
+    "fields": {
+      "name": "\u4f01\u696d\u7ba1\u7406\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 6,
+    "fields": {
+      "name": "\u8cc7\u8a0a\u7ba1\u7406\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 7,
+    "fields": {
+      "name": "\u61c9\u7528\u5916\u8a9e\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 8,
+    "fields": {
+      "name": "\u6578\u4f4d\u591a\u5a92\u9ad4\u8a2d\u8a08\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 9,
+    "fields": {
+      "name": "\u5546\u696d\u8a2d\u8a08\u7ba1\u7406\u7cfb"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 10,
+    "fields": {
+      "name": "\u5546\u54c1\u5275\u610f\u7d93\u71df\u7cfb"
+    }
+  }
+]
