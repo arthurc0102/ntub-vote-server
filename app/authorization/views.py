@@ -1,3 +1,5 @@
+from app.school.services import get_student_info
+
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
@@ -11,7 +13,7 @@ def token(request):
     serializer = TokenSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     email = services.check_token(serializer.data['token'])
-    student_info = services.get_student_info(email.split('@')[0])
+    student_info = get_student_info(email.split('@')[0])
     token = services.create_jwt(student_info)
     return Response({'token': token})
 
