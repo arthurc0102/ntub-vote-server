@@ -17,6 +17,7 @@ django-cors-headers = "*"
 pillow = "*"
 django-cleanup = "*"
 requests = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"

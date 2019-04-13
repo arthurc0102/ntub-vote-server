@@ -1,5 +1,5 @@
 from rest_framework import serializers
 
 
-class LoginSerializer(serializers.Serializer):
+class TokenSerializer(serializers.Serializer):
     token = serializers.CharField()

@@ -17,7 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from app.authorization.views import login
+from app.authorization.views import token, verify, refresh
 from app.candidates.views import CandidateViewSet
 from app.elections.views import PoolViewSet
 
@@ -35,7 +35,9 @@ route.register('vote-pools', PoolViewSet)
 
 urlpatterns = [
     path('', include(route.urls)),
-    path('auth/login', login, name='auth-login'),
+    path('auth/token', token, name='auth-token'),
+    path('auth/token/verify', verify, name='auth-verify'),
+    path('auth/token/refresh', refresh, name='auth-refresh'),
     path('admin/', admin.site.urls),
 ]
 
