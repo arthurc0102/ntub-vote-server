@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import System, Department, Grade, Class
+from .models import Department
 
 
-@admin.register(System, Department, Grade, Class)
+@admin.register(Department)
 class DisplayNameAdmin(admin.ModelAdmin):
     list_display = ('name',)
