@@ -51,13 +51,17 @@ class Vote(models.Model):
         return self.candidate.pool
 
     def clean(self):
+        try:  # No cross validation if fields validation not pass.
+            self.clean_fields()
+        except ValidationError:
+            return
+
         errors = {}
 
-        if getattr(self, 'pool', None):
-            if not self.is_agree and self.pool.candidates.count() != 1:
-                errors.setdefault('is_agree', []).append(
-                    'No disagree for this vote pool.',
-                )
+        if not self.is_agree and self.pool.candidates.count() != 1:
+            errors.setdefault('is_agree', []).append(
+                'No disagree for this vote pool.',
+            )
 
         try:
             info = get_student_info(self.std_no, ['dept_print'])
