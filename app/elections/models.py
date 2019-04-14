@@ -3,7 +3,6 @@ from django.db import models
 from django.utils import timezone
 
 from app.school.models import Department
-from app.school.services import get_student_info
 
 
 class Time(models.Model):
@@ -62,19 +61,6 @@ class Vote(models.Model):
             errors.setdefault('is_agree', []).append(
                 'No disagree for this vote pool.',
             )
-
-        try:
-            info = get_student_info(self.std_no, ['dept_print'])
-        except Exception:
-            errors.setdefault('std_no', []).append(
-                'Student number not valid.',
-            )
-        else:
-            departments = self.pool.departments.values_list('name', flat=True)
-            if info['dept_print'] not in departments:
-                errors.setdefault('candidate', []).append(
-                    'You can\'t vote to this candidate.',
-                )
 
         voted = Vote.objects \
             .filter(std_no=self.std_no, candidate__pool=self.pool) \

@@ -3,6 +3,7 @@ from django.contrib import admin
 from config.settings import DEBUG
 
 from .models import Time, Pool, Vote
+from .forms import VoteForm
 
 
 @admin.register(Time)
@@ -28,6 +29,7 @@ class PoolAdmin(admin.ModelAdmin):
 
 class VoteAdmin(admin.ModelAdmin):
     list_display = ('std_no', 'candidate')
+    form = VoteForm
 
 
 if DEBUG:

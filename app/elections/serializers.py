@@ -37,7 +37,17 @@ class VoteSerializer(serializers.ModelSerializer):
         fields = ('candidate', 'is_agree')
 
     def validate(self, data):
-        data['std_no'] = self.context['request'].user.std_no
+        user = self.context['request'].user
+        data['std_no'] = user.std_no
+        departments = data['candidate'] \
+            .pool \
+            .departments \
+            .values_list('name', flat=True)
+
+        if user.dept_print not in departments:
+            raise serializers.ValidationError(
+                'You can\'t vote to this candidate.',
+            )
 
         try:
             Vote(**data).full_clean()
