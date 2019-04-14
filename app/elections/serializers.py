@@ -9,9 +9,19 @@ from .models import Pool, Vote
 
 
 class PoolSerializer(serializers.ModelSerializer):
+    voted = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Pool
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'voted')
+
+    def get_voted(self, obj):
+        votes = Vote.objects.filter(
+            candidate__pool=obj,
+            std_no=self.context['request'].user.std_no
+        )
+
+        return len(votes) > 0
 
 
 class PoolAndCandidateSerializer(serializers.ModelSerializer):
