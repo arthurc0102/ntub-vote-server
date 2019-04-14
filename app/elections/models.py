@@ -21,7 +21,7 @@ class Time(models.Model):
             raise ValidationError('Time should only have one record.')
 
     @property
-    def is_time(self):
+    def is_vote_time(self):
         return self.start_at <= timezone.now() <= self.end_at
 
 

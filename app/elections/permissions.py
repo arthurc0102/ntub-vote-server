@@ -11,4 +11,4 @@ class IsVoteTimePermission(permissions.BasePermission):
         if time is None:
             return False
 
-        return time.is_time
+        return time.is_vote_time
