@@ -37,8 +37,10 @@ class Candidate(models.Model):
         return f'{self.pool}-{self.std_no}-{self.name}'
 
     def clean(self):
-        if self.pk is not None and Vote.objects.count() > 0:
-            raise ValidationError('Vote started so can\'t edit candidate.')
+        if Vote.objects.filter(candidate__pool=self.pool).count() > 0:
+            raise ValidationError(
+                'This pool\'s vote has been started no create or edit.'
+            )
 
         try:
             info = get_student_info(self.std_no, ['std_name', 'class_name'])
