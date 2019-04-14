@@ -34,7 +34,7 @@ class Candidate(models.Model):
         )
 
     def __str__(self):
-        return f'{self.std_no}-{self.name}'
+        return f'{self.pool}-{self.std_no}-{self.name}'
 
     def clean(self):
         if self.pk is not None and Vote.objects.count() > 0:
