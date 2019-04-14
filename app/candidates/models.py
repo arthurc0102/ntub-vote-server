@@ -4,7 +4,7 @@ import time
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from app.elections.models import Pool
+from app.elections.models import Pool, Vote
 from app.school.services import get_student_info
 
 
@@ -37,10 +37,13 @@ class Candidate(models.Model):
         return f'{self.std_no}-{self.name}'
 
     def clean(self):
+        if self.pk is not None and Vote.objects.count() > 0:
+            raise ValidationError('Vote started so can\'t edit candidate.')
+
         try:
             info = get_student_info(self.std_no, ['std_name', 'class_name'])
         except Exception:
-            raise ValidationError({'std_no': 'Student No not valid.'})
+            raise ValidationError({'std_no': 'Student number not valid.'})
 
         self.name = info['std_name']
         self.klass = info['class_name']
