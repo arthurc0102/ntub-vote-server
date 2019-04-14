@@ -29,13 +29,13 @@ def check_token(token):
     return user_info['email']
 
 
-def create_jwt(payload):
+def create_jwt(payload, minutes=10):
     assert type(payload) is dict, 'Payload type error.'
 
     utc = datetime.utcnow()
     payload.update({
         'iat': utc,
-        'exp': utc + timedelta(minutes=10),
+        'exp': utc + timedelta(minutes=minutes),
     })
 
     return jwt.encode(payload, SECRET_KEY, JWT_ALGORITHM)
