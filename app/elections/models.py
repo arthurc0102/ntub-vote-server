@@ -72,8 +72,8 @@ class Vote(models.Model):
         else:
             departments = self.pool.departments.values_list('name', flat=True)
             if info['dept_print'] not in departments:
-                errors.setdefault('std_no', []).append(
-                    'You can\'t vote this pool.',
+                errors.setdefault('candidate', []).append(
+                    'You can\'t vote to this candidate.',
                 )
 
         voted = Vote.objects \
