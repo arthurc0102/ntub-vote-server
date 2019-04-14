@@ -19,7 +19,7 @@ from django.urls import path, include
 
 from app.authorization.views import token, verify, refresh
 from app.candidates.views import CandidateViewSet
-from app.elections.views import PoolViewSet
+from app.elections.views import PoolViewSet, VoteViewSet
 
 from config.settings import DEBUG
 from config.components.static import MEDIA_ROOT, MEDIA_URL
@@ -31,6 +31,7 @@ route = routers.SimpleRouter()
 route.trailing_slash = ''
 route.register('candidates', CandidateViewSet)
 route.register('vote-pools', PoolViewSet)
+route.register('vote', VoteViewSet)
 
 
 urlpatterns = [

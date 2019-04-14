@@ -1,7 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils import timezone
 
 from app.school.models import Department
+from app.school.services import get_student_info
 
 
 class Time(models.Model):
@@ -18,6 +20,10 @@ class Time(models.Model):
         if Time.objects.exists() and not self.pk:
             raise ValidationError('Time should only have one record.')
 
+    @property
+    def is_time(self):
+        return self.start_at <= timezone.now() <= self.end_at
+
 
 class Pool(models.Model):
     name = models.CharField('選舉類型', max_length=50, unique=True)
@@ -28,8 +34,7 @@ class Pool(models.Model):
 
 
 class Vote(models.Model):
-    email = models.EmailField('電子郵件')
-    pool = models.ForeignKey(Pool, models.CASCADE, verbose_name='投票類型')
+    std_no = models.CharField('學號', max_length=15)
     candidate = models.ForeignKey(
         'candidates.Candidate',
         models.CASCADE,
@@ -38,21 +43,44 @@ class Vote(models.Model):
     is_agree = models.BooleanField('同意票', default=True)
     create_at = models.DateTimeField('投票時間', auto_now_add=True)
 
-    class Meta:
-        unique_together = (
-            ('email', 'pool'),
-        )
-
     def __str__(self):
-        return '{} vote at {}'.format(self.email, self.pool)
+        return '{} vote for {}'.format(self.std_no, self.candidate)
+
+    @property
+    def pool(self):
+        return self.candidate.pool
 
     def clean(self):
-        if (not self.is_agree) and len(self.pool.candidates.all()) != 1:
-            raise ValidationError({
-                'is_agree': 'No disagree for this vote pool.',
-            })
+        errors = {}
 
-        if self.candidate.pool != self.pool:
-            raise ValidationError({
-                'pool': 'It should be {}.'.format(self.candidate.pool),
-            })
+        if getattr(self, 'pool', None):
+            if not self.is_agree and self.pool.candidates.count() != 1:
+                errors.setdefault('is_agree', []).append(
+                    'No disagree for this vote pool.',
+                )
+
+        try:
+            info = get_student_info(self.std_no, ['dept_print'])
+        except Exception:
+            errors.setdefault('std_no', []).append(
+                'Student number not valid.',
+            )
+        else:
+            departments = self.pool.departments.values_list('name', flat=True)
+            if info['dept_print'] not in departments:
+                errors.setdefault('std_no', []).append(
+                    'You can\'t vote this pool.',
+                )
+
+        voted = Vote.objects \
+            .filter(std_no=self.std_no, candidate__pool=self.pool) \
+            .exclude(pk=self.pk) \
+            .exists()
+
+        if voted:
+            errors.setdefault('candidate', []).append(
+                'Already voted this pool before.',
+            )
+
+        if errors:
+            raise ValidationError(errors)

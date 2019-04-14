@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from config.settings import DEBUG
+
 from .models import Time, Pool, Vote
 
 
@@ -24,6 +26,9 @@ class PoolAdmin(admin.ModelAdmin):
     get_departments.short_description = '可參與科系'
 
 
-@admin.register(Vote)
 class VoteAdmin(admin.ModelAdmin):
-    list_display = ('email', 'pool')
+    list_display = ('std_no', 'candidate')
+
+
+if DEBUG:
+    admin.site.register(Vote, VoteAdmin)
