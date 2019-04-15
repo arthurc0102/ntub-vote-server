@@ -44,7 +44,7 @@ class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
 
 class TimeViewSet(viewsets.GenericViewSet):
-    queryset = Vote.objects.all()
+    queryset = Time.objects.all()
     serializer_class = TimeSerializer
     permission_classes = []
 
