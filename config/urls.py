@@ -31,8 +31,7 @@ route = routers.SimpleRouter()
 route.trailing_slash = ''
 route.register('candidates', CandidateViewSet)
 route.register('vote-pools', PoolViewSet)
-route.register('vote', VoteViewSet)
-
+route.register('votes', VoteViewSet)
 
 urlpatterns = [
     path('', include(route.urls)),
