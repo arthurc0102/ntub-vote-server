@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 from app.candidates.serializers import PoolCandidateSerializer
 
-from .models import Pool, Vote
+from .models import Pool, Vote, Time
 
 
 class PoolSerializer(serializers.ModelSerializer):
@@ -55,3 +55,9 @@ class VoteSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(e.message_dict)
 
         return data
+
+
+class TimeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Time
+        fields = ('start_at', 'end_at', 'is_vote_time')

@@ -1,13 +1,15 @@
 from rest_framework import viewsets
 from rest_framework import mixins
 from rest_framework.settings import api_settings
+from rest_framework.response import Response
 
-from .models import Pool, Vote
+from .models import Pool, Vote, Time
 from .permissions import IsVoteTimePermission
 from .serializers import (
     PoolSerializer,
     PoolAndCandidateSerializer,
     VoteSerializer,
+    TimeSerializer,
 )
 
 
@@ -39,3 +41,14 @@ class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     permission_classes = api_settings.DEFAULT_PERMISSION_CLASSES + [
         IsVoteTimePermission,
     ]
+
+
+class TimeViewSet(viewsets.GenericViewSet):
+    queryset = Vote.objects.all()
+    serializer_class = TimeSerializer
+    permission_classes = []
+
+    def list(self, request):
+        time = Time.objects.first()
+        serializer = self.get_serializer(time)
+        return Response(serializer.data)

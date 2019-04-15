@@ -19,7 +19,7 @@ from django.urls import path, include
 
 from app.authorization.views import token, verify, refresh
 from app.candidates.views import CandidateViewSet
-from app.elections.views import PoolViewSet, VoteViewSet
+from app.elections.views import PoolViewSet, VoteViewSet, TimeViewSet
 
 from config.settings import DEBUG
 from config.components.static import MEDIA_ROOT, MEDIA_URL
@@ -32,6 +32,7 @@ route.trailing_slash = ''
 route.register('candidates', CandidateViewSet)
 route.register('vote-pools', PoolViewSet)
 route.register('votes', VoteViewSet)
+route.register('time', TimeViewSet)
 
 urlpatterns = [
     path('', include(route.urls)),

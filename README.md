@@ -6,7 +6,6 @@
 ## TODO
 
 - Change auth to class base view
-- Add is vote time action
 - Dashboard
 - Result Count
 - Export
