@@ -25,6 +25,9 @@ from config.settings import DEBUG
 from config.components.static import MEDIA_ROOT, MEDIA_URL
 
 from rest_framework import routers
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.documentation import include_docs_urls
+from rest_framework.permissions import IsAdminUser
 
 
 route = routers.SimpleRouter()
@@ -35,9 +38,17 @@ route.register('vote-pools', PoolViewSet)
 route.register('votes', VoteViewSet)
 route.register('time', TimeViewSet)
 
+docs_config = {
+    'title': 'NTUB Vote API',
+    'public': False,
+    'authentication_classes': [SessionAuthentication],
+    'permission_classes': [IsAdminUser],
+}
+
 urlpatterns = [
     path('', include(route.urls)),
     path('admin/', admin.site.urls),
+    path('docs/', include_docs_urls(**docs_config)),
 ]
 
 if DEBUG:
