@@ -17,7 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from app.authorization.views import token, verify, refresh
+from app.authorization.views import AuthViewSet
 from app.candidates.views import CandidateViewSet
 from app.elections.views import PoolViewSet, VoteViewSet, TimeViewSet
 
@@ -29,6 +29,7 @@ from rest_framework import routers
 
 route = routers.SimpleRouter()
 route.trailing_slash = ''
+route.register('auth', AuthViewSet, 'auth')
 route.register('candidates', CandidateViewSet)
 route.register('vote-pools', PoolViewSet)
 route.register('votes', VoteViewSet)
@@ -36,9 +37,6 @@ route.register('time', TimeViewSet)
 
 urlpatterns = [
     path('', include(route.urls)),
-    path('auth/token', token, name='auth-token'),
-    path('auth/token/verify', verify, name='auth-verify'),
-    path('auth/token/refresh', refresh, name='auth-refresh'),
     path('admin/', admin.site.urls),
 ]
 
