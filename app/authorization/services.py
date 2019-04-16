@@ -49,6 +49,6 @@ def refresh_jwt(token):
     try:
         payload = verify_jwt(token)
     except Exception:
-        raise AuthenticationFailed()
+        raise AuthenticationFailed('Token is invalid or expired.')
 
     return create_jwt(payload)
