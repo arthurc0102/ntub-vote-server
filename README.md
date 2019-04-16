@@ -5,7 +5,6 @@
 
 ## TODO
 
-- Change auth to class base view
 - Dashboard
 - Result Count
 - Export
