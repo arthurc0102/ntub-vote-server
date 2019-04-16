@@ -66,7 +66,7 @@ class AuthViewSet(viewsets.GenericViewSet):
     )
     def login(self, request):
         """
-        Get JWT without google login, just for developing.
+        Get JWT without google access token, just for developing.
         """
         if not CAN_USE_LOGIN_ACTION:
             raise PermissionDenied()
