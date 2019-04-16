@@ -28,6 +28,9 @@ class AuthViewSet(viewsets.GenericViewSet):
 
     @action(['POST'], False)
     def token(self, request):
+        """
+        Get JWT with google access token.
+        """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         email = services.check_token(serializer.data['token'])
