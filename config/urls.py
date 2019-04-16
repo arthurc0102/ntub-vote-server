@@ -46,7 +46,7 @@ docs_config = {
 }
 
 urlpatterns = [
-    path('', include(route.urls)),
+    path('api/', include(route.urls)),
     path('admin/', admin.site.urls),
     path('docs/', include_docs_urls(**docs_config)),
 ]
