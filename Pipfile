@@ -18,6 +18,7 @@ pillow = "*"
 django-cleanup = "*"
 requests = "*"
 pyjwt = "*"
+coreapi = "*"
 
 [requires]
 python_version = "3.7"
