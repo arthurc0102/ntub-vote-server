@@ -9,4 +9,4 @@
 - Result Count
 - Export
 - Translate to chinese
-- Deploy
+- Deploy Doc
