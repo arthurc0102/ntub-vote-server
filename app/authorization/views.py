@@ -74,5 +74,9 @@ class AuthViewSet(viewsets.GenericViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         student_info = get_student_info(serializer.data['std_no'])
-        token = services.create_jwt(student_info, serializer.data['minutes'])
+        token = services.create_jwt(
+            student_info,
+            serializer.data['access'],
+            serializer.data['refresh'],
+        )
         return Response({'token': token})

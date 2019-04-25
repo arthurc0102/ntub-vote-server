@@ -7,7 +7,12 @@ class TokenSerializer(serializers.Serializer):
 
 class LoginSerializer(serializers.Serializer):
     std_no = serializers.CharField()
-    minutes = serializers.IntegerField(
+    access = serializers.IntegerField(
+        min_value=1,
+        max_value=1000000,
+        default=30,
+    )
+    refresh = serializers.IntegerField(
         min_value=1,
         max_value=1000000,
         default=30,

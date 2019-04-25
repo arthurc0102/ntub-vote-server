@@ -1,9 +1,13 @@
 import jwt
 import requests
 
-from config.components.common import SECRET_KEY
-from config.components.jwt import JWT_ALGORITHM
 from config.components.api import GOOGLE_AUTH_API_URL, GOOGLE_AUTH_VALID_HD
+from config.components.common import SECRET_KEY
+from config.components.jwt import (
+    JWT_ALGORITHM,
+    ACCESS_LIFETIME,
+    REFRESH_LIFETIME,
+)
 
 from calendar import timegm
 
@@ -31,14 +35,14 @@ def check_token(token):
     return user_info['email']
 
 
-def create_jwt(payload, minutes=10):
+def create_jwt(payload, access=ACCESS_LIFETIME, refresh=REFRESH_LIFETIME):
     assert type(payload) is dict, 'Payload type error.'
 
     utc = datetime.utcnow()
-    refresh_exp = timegm((utc + timedelta(minutes=minutes+10)).utctimetuple())
+    refresh_exp = timegm((utc + timedelta(minutes=refresh)).utctimetuple())
     payload.update({
         'iat': utc,
-        'exp': utc + timedelta(minutes=minutes),
+        'exp': utc + timedelta(minutes=access),
         'refresh_exp': refresh_exp,
     })
 
