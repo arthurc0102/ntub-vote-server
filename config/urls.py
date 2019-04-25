@@ -23,6 +23,7 @@ from app.elections.views import PoolViewSet, VoteViewSet, TimeViewSet
 
 from config.settings import DEBUG
 from config.components.static import MEDIA_ROOT, MEDIA_URL
+from config.components.common import SHOW_DOCS
 
 from rest_framework import routers
 from rest_framework.authentication import SessionAuthentication
@@ -48,8 +49,10 @@ docs_config = {
 urlpatterns = [
     path('api/', include(route.urls)),
     path('admin/', admin.site.urls),
-    path('docs/', include_docs_urls(**docs_config)),
 ]
 
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+if SHOW_DOCS:
+    urlpatterns += [path('docs/', include_docs_urls(**docs_config))]

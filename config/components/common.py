@@ -19,3 +19,5 @@ ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 
 CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGINS', default=[])
+
+SHOW_DOCS = env('SHOW_DOCS', default=False)
