@@ -50,16 +50,23 @@ def verify_jwt(token, verify=True):
 
 
 def refresh_jwt(token):
-    payload = verify_jwt(token, False)
-    refresh_exp = payload['refresh_exp']
     now = timegm((datetime.utcnow()).utctimetuple())
 
-    if not refresh_exp.isdigit():
-        raise AuthenticationFailed('Token is invalid or expired.')
+    try:
+        payload = verify_jwt(token)
+    except jwt.exceptions.ExpiredSignatureError:
+        payload = verify_jwt(token, False)
+    except Exception:
+        raise AuthenticationFailed('Token is invalid.')
 
-    refresh_exp = int(refresh_exp)
+    refresh_exp = payload['refresh_exp']
+
+    try:
+        refresh_exp = int(refresh_exp)
+    except Exception:
+        raise AuthenticationFailed('Token is invalid.')
 
     if refresh_exp < now:
-        raise AuthenticationFailed('Token is invalid or expired.')
+        raise AuthenticationFailed('Token is expired to refresh.')
 
     return create_jwt(payload)
