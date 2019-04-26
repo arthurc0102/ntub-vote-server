@@ -13,7 +13,7 @@ from calendar import timegm
 
 from datetime import datetime, timedelta
 
-from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed, PermissionDenied
 
 
 def check_token(token):
@@ -61,16 +61,16 @@ def refresh_jwt(token):
     except jwt.ExpiredSignatureError:
         payload = verify_jwt(token, False)
     except Exception:
-        raise AuthenticationFailed('Token is invalid.')
+        raise PermissionDenied('Token is invalid.')
 
     refresh_exp = payload['refresh_exp']
 
     try:
         refresh_exp = int(refresh_exp)
     except Exception:
-        raise AuthenticationFailed('Token is invalid.')
+        raise PermissionDenied('Token is invalid.')
 
     if refresh_exp < now:
-        raise AuthenticationFailed('Token is expired to refresh.')
+        raise PermissionDenied('Token is expired to refresh.')
 
     return create_jwt(payload)
