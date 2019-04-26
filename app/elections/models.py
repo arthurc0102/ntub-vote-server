@@ -24,8 +24,16 @@ class Time(models.Model):
             raise ValidationError('已經存在一筆投票時間紀錄了。')
 
     @property
+    def is_start(self):
+        return self.start_at <= timezone.now()
+
+    @property
+    def is_end(self):
+        return timezone.now() >= self.end_at
+
+    @property
     def is_vote_time(self):
-        return self.start_at <= timezone.now() <= self.end_at
+        return self.is_start and not self.is_end
 
 
 class Pool(models.Model):

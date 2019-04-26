@@ -60,4 +60,4 @@ class VoteSerializer(serializers.ModelSerializer):
 class TimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Time
-        fields = ('start_at', 'end_at', 'is_vote_time')
+        fields = ('start_at', 'end_at', 'is_start', 'is_end', 'is_vote_time')
