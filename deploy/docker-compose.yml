@@ -20,6 +20,7 @@ services:
       NTUB_API_TOKEN: $NTUB_API_TOKEN
       ACCESS_LIFETIME: $ACCESS_LIFETIME
       REFRESH_LIFETIME: $REFRESH_LIFETIME
+      SHOW_DOCS: $SHOW_DOCS
 
     networks:
       - internal
