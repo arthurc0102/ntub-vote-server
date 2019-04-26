@@ -26,9 +26,9 @@ from config.components.static import MEDIA_ROOT, MEDIA_URL
 from config.components.common import SHOW_DOCS
 
 from rest_framework import routers
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.documentation import include_docs_urls
-from rest_framework.permissions import IsAdminUser
+
+from . import docs
 
 
 route = routers.SimpleRouter()
@@ -38,13 +38,6 @@ route.register('candidates', CandidateViewSet)
 route.register('vote-pools', PoolViewSet)
 route.register('votes', VoteViewSet)
 route.register('time', TimeViewSet)
-
-docs_config = {
-    'title': 'NTUB Vote API',
-    'public': False,
-    'authentication_classes': [SessionAuthentication],
-    'permission_classes': [IsAdminUser],
-}
 
 admin.site.site_title = '北商投票系統管理'
 admin.site.site_header = '北商投票系統後台'
@@ -59,4 +52,4 @@ if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 if SHOW_DOCS:
-    urlpatterns += [path('docs/', include_docs_urls(**docs_config))]
+    urlpatterns += [path('docs/', include_docs_urls(**docs.config))]
