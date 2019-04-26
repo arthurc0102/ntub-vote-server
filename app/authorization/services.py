@@ -58,7 +58,7 @@ def refresh_jwt(token):
 
     try:
         payload = verify_jwt(token)
-    except jwt.exceptions.ExpiredSignatureError:
+    except jwt.ExpiredSignatureError:
         payload = verify_jwt(token, False)
     except Exception:
         raise AuthenticationFailed('Token is invalid.')
