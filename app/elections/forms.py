@@ -23,18 +23,14 @@ class VoteForm(forms.ModelForm):
         try:
             info = get_student_info(std_no, ['dept_print'])
         except Exception:
-            errors.setdefault('std_no', []).append(
-                'Student number not valid.',
-            )
+            errors.setdefault('std_no', []).append('這個學號不合法或不存在。')
         else:
             departments = candidate \
                 .pool.departments \
                 .values_list('name', flat=True)
 
             if info['dept_print'] not in departments:
-                errors.setdefault('candidate', []).append(
-                    'You can\'t vote to this candidate.',
-                )
+                errors.setdefault('candidate', []).append('你無法投給這個候選人。')
 
         if errors:
             raise ValidationError(errors)

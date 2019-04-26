@@ -46,6 +46,10 @@ docs_config = {
     'permission_classes': [IsAdminUser],
 }
 
+admin.site.site_title = '北商投票系統管理'
+admin.site.site_header = '北商投票系統後台'
+admin.site.index_title = '系統管理'
+
 urlpatterns = [
     path('api/', include(route.urls)),
     path('admin/', admin.site.urls),

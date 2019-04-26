@@ -29,6 +29,8 @@ class Candidate(models.Model):
     )
 
     class Meta:
+        verbose_name = '候選人'
+        verbose_name_plural = '候選人'
         unique_together = (
             ('std_no', 'pool'),
         )
@@ -38,14 +40,12 @@ class Candidate(models.Model):
 
     def clean(self):
         if Vote.objects.filter(candidate__pool=self.pool).count() > 0:
-            raise ValidationError(
-                'This pool\'s vote has been started no create or edit.'
-            )
+            raise ValidationError('這個選舉已經開始投票，所以無法更新或新增候選人。')
 
         try:
             info = get_student_info(self.std_no, ['std_name', 'class_name'])
         except Exception:
-            raise ValidationError({'std_no': 'Student number not valid.'})
+            raise ValidationError({'std_no': '這個學號不合法或不存在。'})
 
         self.name = info['std_name']
         self.klass = info['class_name']

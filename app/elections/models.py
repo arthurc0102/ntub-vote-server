@@ -9,15 +9,19 @@ class Time(models.Model):
     start_at = models.DateTimeField('開始時間')
     end_at = models.DateTimeField('結束時間')
 
+    class Meta:
+        verbose_name = '選舉時間'
+        verbose_name_plural = '選舉時間'
+
     def __str__(self):
         return '{} - {}'.format(self.start_at, self.end_at)
 
     def clean(self):
         if self.start_at > self.end_at:
-            raise ValidationError('Start should be smaller than end.')
+            raise ValidationError('開始時間必須小於結束時間。')
 
         if Time.objects.exists() and not self.pk:
-            raise ValidationError('Time should only have one record.')
+            raise ValidationError('已經存在一筆投票時間紀錄了。')
 
     @property
     def is_vote_time(self):
@@ -27,6 +31,10 @@ class Time(models.Model):
 class Pool(models.Model):
     name = models.CharField('選舉類型', max_length=50, unique=True)
     departments = models.ManyToManyField(Department, verbose_name='可參與科系')
+
+    class Meta:
+        verbose_name = '選舉'
+        verbose_name_plural = '選舉'
 
     def __str__(self):
         return self.name
@@ -41,6 +49,10 @@ class Vote(models.Model):
     )
     is_agree = models.BooleanField('同意票', default=True)
     create_at = models.DateTimeField('投票時間', auto_now_add=True)
+
+    class Meta:
+        verbose_name = '選票'
+        verbose_name_plural = '選票'
 
     def __str__(self):
         return '{} vote for {}'.format(self.std_no, self.candidate)
@@ -58,9 +70,7 @@ class Vote(models.Model):
         errors = {}
 
         if not self.is_agree and self.pool.candidates.count() != 1:
-            errors.setdefault('is_agree', []).append(
-                'No disagree for this vote pool.',
-            )
+            errors.setdefault('is_agree', []).append('此選舉不能投不同意票。')
 
         voted = Vote.objects \
             .filter(std_no=self.std_no, candidate__pool=self.pool) \
@@ -68,9 +78,7 @@ class Vote(models.Model):
             .exists()
 
         if voted:
-            errors.setdefault('candidate', []).append(
-                'Already voted this pool before.',
-            )
+            errors.setdefault('candidate', []).append('你已經參與過這個選舉了。')
 
         if errors:
             raise ValidationError(errors)

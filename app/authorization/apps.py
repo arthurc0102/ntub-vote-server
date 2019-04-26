@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class AuthorizationConfig(AppConfig):
-    name = 'authorization'
+    name = 'app.authorization'
+    verbose_name = '認證'
