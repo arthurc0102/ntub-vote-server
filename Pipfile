@@ -5,12 +5,13 @@ verify_ssl = true
 
 [dev-packages]
 ipython = "*"
+werkzeug = "*"
+django-extensions = "*"
 
 [packages]
 django = "*"
 django-environ = "*"
 django-split-settings = "*"
-django-extensions = "*"
 psycopg2-binary = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
