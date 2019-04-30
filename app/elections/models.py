@@ -53,7 +53,7 @@ class Vote(models.Model):
     candidate = models.ForeignKey(
         'candidates.Candidate',
         models.CASCADE,
-        verbose_name='候選人'
+        verbose_name='候選人',
     )
     is_agree = models.BooleanField('同意票', default=True)
     create_at = models.DateTimeField('投票時間', auto_now_add=True)
