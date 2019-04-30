@@ -5,6 +5,6 @@ from .serializers import CandidateSerializer
 
 
 class CandidateViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Candidate.objects.all()
+    queryset = Candidate.objects.select_related('pool').all()
     serializer_class = CandidateSerializer
     permission_classes = []

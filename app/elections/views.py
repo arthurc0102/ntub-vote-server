@@ -27,12 +27,18 @@ class PoolViewSet(viewsets.ReadOnlyModelViewSet):
         return super().get_serializer_class()
 
     def get_queryset(self):
-        if self.action not in ['list', 'retrieve']:
-            return super().get_queryset()
+        queryset = super().get_queryset()
 
-        return Pool.objects.filter(
-            departments__name=self.request.user.dept_print,
-        )
+        if self.action == 'list':
+            return queryset \
+                .prefetch_related('candidates', 'candidates__vote_set') \
+                .filter(departments__name=self.request.user.dept_print)
+
+        if self.action == 'retrieve':
+            return queryset \
+                .filter(departments__name=self.request.user.dept_print)
+
+        return queryset
 
 
 class VoteViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):

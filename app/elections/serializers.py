@@ -15,12 +15,13 @@ class PoolSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'voted')
 
     def get_voted(self, obj):
-        votes = Vote.objects.filter(
-            candidate__pool=obj,
-            std_no=self.context['request'].user.std_no
-        )
+        std_no = self.context['request'].user.std_no
+        for c in obj.candidates.all():
+            # NOTE: 這邊沒用 values_list 是為了不讓 Django 再去撈 DB
+            if std_no in [v.std_no for v in c.vote_set.all()]:
+                return True
 
-        return len(votes) > 0
+        return False
 
 
 class PoolAndCandidateSerializer(serializers.ModelSerializer):
