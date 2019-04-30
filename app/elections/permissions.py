@@ -12,3 +12,14 @@ class IsVoteTimePermission(permissions.BasePermission):
             return False
 
         return time.is_vote_time
+
+
+class IsVoteTimeEndPermission(permissions.BasePermission):
+    message = 'Vote haven\'t end yet.'
+
+    def has_permission(self, request, view):
+        time = Time.objects.first()
+        if time is None:
+            return False
+
+        return time.is_end
