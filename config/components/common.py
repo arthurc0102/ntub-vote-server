@@ -21,3 +21,5 @@ WSGI_APPLICATION = 'config.wsgi.application'
 CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGINS', default=[])
 
 SHOW_DOCS = env('SHOW_DOCS', default=False)
+
+VOTE_ADMIN = env('VOTE_ADMIN', default=False)

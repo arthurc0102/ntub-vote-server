@@ -21,6 +21,7 @@ services:
       ACCESS_LIFETIME: $ACCESS_LIFETIME
       REFRESH_LIFETIME: $REFRESH_LIFETIME
       SHOW_DOCS: $SHOW_DOCS
+      VOTE_ADMIN: $VOTE_ADMIN
 
     networks:
       - internal

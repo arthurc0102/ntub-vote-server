@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from config.settings import DEBUG
+from config.components.common import VOTE_ADMIN
 
 from .models import Time, Pool, Vote
 from .forms import VoteForm
@@ -32,5 +32,5 @@ class VoteAdmin(admin.ModelAdmin):
     form = VoteForm
 
 
-if DEBUG:
+if VOTE_ADMIN:
     admin.site.register(Vote, VoteAdmin)
