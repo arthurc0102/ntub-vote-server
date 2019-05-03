@@ -41,8 +41,8 @@ class Pool(models.Model):
     departments = models.ManyToManyField(Department, verbose_name='可參與科系')
 
     class Meta:
-        verbose_name = '選舉'
-        verbose_name_plural = '選舉'
+        verbose_name = '選舉類型'
+        verbose_name_plural = '選舉類型'
 
     def __str__(self):
         return self.name
