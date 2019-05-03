@@ -10,7 +10,7 @@ INFO_KEYS = ['std_no', 'std_name', 'dept_print']
 
 
 def get_student_info(std_no, keys=INFO_KEYS):
-    res = requests.post(NTUB_API_URL, std_no, headers=NTUB_API_HEADERS)
+    res = requests.post(NTUB_API_URL, f'"{std_no}"', headers=NTUB_API_HEADERS)
     if not res.ok or not res.json():
         raise AuthenticationFailed()
 
