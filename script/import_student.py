@@ -53,7 +53,7 @@ def validate_std_no(std_no):
 def insert_data(group, data):
     from app.school.models import Group, Student
 
-    group, _ = Group.object.get_or_create(name=group)
+    group, _ = Group.objects.get_or_create(name=group)
 
     for std_no in data:
         std, _ = Student.objects.get_or_create(std_no=std_no)
@@ -71,7 +71,7 @@ def main():
         if args.title:
             data = data[1:]
 
-    assert len(data) <= 0, 'No data.'
+    assert len(data) > 0, 'No data.'
 
     for i, std_no in enumerate(data):
         if validate_std_no(std_no):
