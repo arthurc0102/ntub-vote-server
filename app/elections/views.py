@@ -3,6 +3,8 @@ from rest_framework import mixins
 from rest_framework.settings import api_settings
 from rest_framework.response import Response
 
+from django.db.models import Count
+
 from .models import Pool, Vote, Time
 from .permissions import IsVoteTimePermission
 from .serializers import (
@@ -32,7 +34,9 @@ class PoolViewSet(viewsets.ReadOnlyModelViewSet):
         if self.action == 'list':
             return queryset \
                 .prefetch_related('candidates', 'candidates__vote_set') \
-                .filter(departments__name=self.request.user.dept_print)
+                .filter(departments__name=self.request.user.dept_print) \
+                .annotate(candidate_count=Count('candidates')) \
+                .filter(candidate_count__gt=0)
 
         if self.action == 'retrieve':
             return queryset \
