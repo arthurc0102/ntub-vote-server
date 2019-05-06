@@ -2,6 +2,8 @@ from django.contrib import admin
 
 from config.settings import DEBUG
 
+from util.admin.decorators import short_description
+
 from .models import Time, Pool, Vote
 from .forms import VoteForm
 
