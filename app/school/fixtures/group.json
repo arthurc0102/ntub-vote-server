@@ -1,0 +1,9 @@
+[
+  {
+    "model": "school.group",
+    "pk": 1,
+    "fields": {
+      "name": "\u73ed\u7d1a\u5e79\u90e8"
+    }
+  }
+]
