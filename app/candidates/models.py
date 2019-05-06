@@ -36,7 +36,7 @@ class Candidate(models.Model):
         )
 
     def __str__(self):
-        return f'{self.pool}-{self.std_no}-{self.name}'
+        return f'選舉 {self.pool_id}-{self.std_no}-{self.name}'
 
     def clean(self):
         if Vote.objects.filter(candidate__pool=self.pool).count() > 0:
