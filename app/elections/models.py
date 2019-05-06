@@ -38,8 +38,12 @@ class Time(models.Model):
 
 class Pool(models.Model):
     name = models.CharField('選舉類型', max_length=50, unique=True)
-    groups = models.ManyToManyField(Group, verbose_name='可參與群組')
-    departments = models.ManyToManyField(Department, verbose_name='可參與科系')
+    groups = models.ManyToManyField(Group, verbose_name='可參與群組', blank=True)
+    departments = models.ManyToManyField(
+        Department,
+        verbose_name='可參與科系',
+        blank=True,
+    )
 
     class Meta:
         verbose_name = '選舉'
