@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 
-from app.school.models import Department
+from app.school.models import Department, Group
 
 
 class Time(models.Model):
@@ -38,6 +38,7 @@ class Time(models.Model):
 
 class Pool(models.Model):
     name = models.CharField('選舉類型', max_length=50, unique=True)
+    groups = models.ManyToManyField(Group, verbose_name='可參與群組')
     departments = models.ManyToManyField(Department, verbose_name='可參與科系')
 
     class Meta:

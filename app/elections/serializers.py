@@ -45,7 +45,12 @@ class VoteSerializer(serializers.ModelSerializer):
             .departments \
             .values_list('name', flat=True)
 
-        if user.dept_print not in departments:
+        groups = data['candidate'] \
+            .pool \
+            .groups \
+            .values_list('student__std_no', flat=True)
+
+        if user.dept_print not in departments and user.std_no not in groups:
             raise serializers.ValidationError(
                 'You can\'t vote to this candidate.',
             )

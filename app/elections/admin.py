@@ -20,13 +20,20 @@ class TimeAdmin(admin.ModelAdmin):
 
 @admin.register(Pool)
 class PoolAdmin(admin.ModelAdmin):
-    list_display = ('name', 'get_departments')
-    filter_horizontal = ('departments',)
+    list_display = ('name', 'get_groups', 'get_departments')
+    filter_horizontal = ('departments', 'groups')
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related('departments', 'groups')
 
     @short_description('可參與科系')
     def get_departments(self, obj):
         return ', '.join([d.name for d in obj.departments.all()])
 
+    @short_description('可參與群組')
+    def get_groups(self, obj):
+        return ', '.join([g.name for g in obj.groups.all()])
 
 
 class VoteAdmin(admin.ModelAdmin):
