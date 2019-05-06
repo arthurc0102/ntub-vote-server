@@ -21,10 +21,10 @@ class PoolAdmin(admin.ModelAdmin):
     list_display = ('name', 'get_departments')
     filter_horizontal = ('departments',)
 
+    @short_description('可參與科系')
     def get_departments(self, obj):
         return ', '.join([d.name for d in obj.departments.all()])
 
-    get_departments.short_description = '可參與科系'
 
 
 class VoteAdmin(admin.ModelAdmin):
