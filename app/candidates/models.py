@@ -25,7 +25,7 @@ class Candidate(models.Model):
         Pool,
         models.PROTECT,
         'candidates',
-        verbose_name='選舉類型'
+        verbose_name='選舉類型',
     )
 
     class Meta:
