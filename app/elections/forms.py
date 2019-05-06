@@ -26,7 +26,8 @@ class VoteForm(forms.ModelForm):
             errors.setdefault('std_no', []).append('這個學號不合法或不存在。')
         else:
             departments = candidate \
-                .pool.departments \
+                .pool\
+                .departments \
                 .values_list('name', flat=True)
 
             if info['dept_print'] not in departments:
