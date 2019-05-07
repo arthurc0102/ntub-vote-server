@@ -10,6 +10,7 @@ class StudentResources(resources.ModelResource):
         model = Student
         fields = ('std_no', 'groups')
         import_id_fields = ('std_no',)
+        clean_model_instances = True
         widgets = {
             'groups': {'field': 'name'},
         }
