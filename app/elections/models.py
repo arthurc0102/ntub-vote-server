@@ -43,7 +43,10 @@ class Pool(models.Model):
         max_length=50,
         unique=True,
         validators=[
-            RegexValidator('^.*(會長|議員|代表)$', '必須是會長、議員或代表結尾'),
+            RegexValidator(
+                regex='^.*(會長|議員|學生代表)$',
+                message='必須是會長、議員或學生代表結尾',
+            ),
         ],
     )
     groups = models.ManyToManyField(Group, verbose_name='可參與群組', blank=True)
