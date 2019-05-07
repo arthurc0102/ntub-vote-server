@@ -68,5 +68,117 @@
     "fields": {
       "name": "\u5546\u54c1\u5275\u610f\u7d93\u71df\u7cfb"
     }
+  },
+  {
+    "model": "school.department",
+    "pk": 11,
+    "fields": {
+      "name": "\u570b\u969b\u8cbf\u6613\u79d1"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 12,
+    "fields": {
+      "name": "\u4f01\u696d\u7ba1\u7406\u79d1"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 13,
+    "fields": {
+      "name": "\u8cc7\u8a0a\u7ba1\u7406\u79d1"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 14,
+    "fields": {
+      "name": "\u8ca1\u653f\u7a05\u52d9\u79d1"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 15,
+    "fields": {
+      "name": "\u8ca1\u52d9\u91d1\u878d\u79d1"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 16,
+    "fields": {
+      "name": "\u61c9\u7528\u5916\u8a9e\u79d1"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 17,
+    "fields": {
+      "name": "\u6703\u8a08\u8cc7\u8a0a\u79d1"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 18,
+    "fields": {
+      "name": "\u4f01\u696d\u7ba1\u7406\u79d1\u83c1\u82f1\u73ed"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 19,
+    "fields": {
+      "name": "\u4f01\u696d\u7ba1\u7406\u7cfb\u83c1\u82f1\u73ed"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 20,
+    "fields": {
+      "name": "\u8ca1\u7d93\u5b78\u9662\u535a\u58eb\u73ed"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 21,
+    "fields": {
+      "name": "\u8cc7\u8a0a\u8207\u6c7a\u7b56\u79d1\u5b78\u7814\u7a76\u6240"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 22,
+    "fields": {
+      "name": "\u4f01\u696d\u7ba1\u7406\u7cfb\u78a9\u58eb\u73ed"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 23,
+    "fields": {
+      "name": "\u8ca1\u52d9\u91d1\u878d\u7cfb\u78a9\u58eb\u73ed"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 24,
+    "fields": {
+      "name": "\u8ca1\u653f\u7a05\u52d9\u7cfb\u78a9\u58eb\u73ed"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 25,
+    "fields": {
+      "name": "\u570b\u969b\u5546\u52d9\u7cfb\u78a9\u58eb\u73ed"
+    }
+  },
+  {
+    "model": "school.department",
+    "pk": 26,
+    "fields": {
+      "name": "\u5275\u610f\u8a2d\u8a08\u8207\u7d93\u71df\u7814\u7a76\u6240\u78a9\u58eb\u73ed"
+    }
   }
 ]
