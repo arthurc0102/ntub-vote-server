@@ -1,11 +1,14 @@
 from django.contrib import admin
 
+from import_export.admin import ExportMixin
+
 from config.components.common import VOTE_ADMIN
 
 from util.admin.decorators import short_description
 
 from .models import Time, Pool, Vote
 from .forms import VoteForm
+from .resources import VoteResources
 
 
 @admin.register(Time)
@@ -19,13 +22,19 @@ class TimeAdmin(admin.ModelAdmin):
 
 
 @admin.register(Pool)
-class PoolAdmin(admin.ModelAdmin):
+class PoolAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('name', 'get_groups', 'get_departments')
     filter_horizontal = ('departments', 'groups')
+    resource_class = VoteResources
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.prefetch_related('departments', 'groups')
+
+    def get_export_queryset(self, request):
+        return Vote.objects \
+            .select_related('candidate__pool') \
+            .order_by('candidate__pool__name', 'std_no')
 
     @short_description('可參與科系')
     def get_departments(self, obj):
