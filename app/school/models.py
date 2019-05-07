@@ -1,4 +1,14 @@
+from django.core.validators import RegexValidator
 from django.db import models
+
+
+STD_NO_PATTERN = \
+    '(?P<night>[N|n]?)' \
+    '(?P<year>[0-9]{2,3})' \
+    '(?P<system>[1-9])' \
+    '(?P<department>[1-9A-Za-z])' \
+    '(?P<class>[0-9]?)' \
+    '(?P<no>[0-9]{2})'
 
 
 class Department(models.Model):
@@ -24,7 +34,12 @@ class Group(models.Model):
 
 
 class Student(models.Model):
-    std_no = models.CharField('學號', max_length=15, unique=True)
+    std_no = models.CharField(
+        '學號',
+        max_length=15,
+        unique=True,
+        validators=[RegexValidator(STD_NO_PATTERN)],
+    )
     groups = models.ManyToManyField(Group, verbose_name='群組')
 
     class Meta:
