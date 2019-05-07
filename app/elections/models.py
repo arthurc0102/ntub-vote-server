@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
 
@@ -37,7 +38,12 @@ class Time(models.Model):
 
 
 class Pool(models.Model):
-    name = models.CharField('選舉類型', max_length=50, unique=True)
+    name = models.CharField(
+        '選舉類型',
+        max_length=50,
+        unique=True,
+        validators=[RegexValidator('^.*(會長|議員|代表)$')],
+    )
     groups = models.ManyToManyField(Group, verbose_name='可參與群組', blank=True)
     departments = models.ManyToManyField(
         Department,
