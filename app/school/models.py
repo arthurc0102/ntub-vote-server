@@ -38,7 +38,7 @@ class Student(models.Model):
         '學號',
         max_length=15,
         unique=True,
-        validators=[RegexValidator(STD_NO_PATTERN)],
+        validators=[RegexValidator(STD_NO_PATTERN, '不合法的學號')],
     )
     groups = models.ManyToManyField(Group, verbose_name='群組')
 
