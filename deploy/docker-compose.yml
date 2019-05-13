@@ -39,6 +39,8 @@ services:
       - "traefik.frontend.rule=Host:${DOMAIN}"
       - "traefik.frontend.entryPoints=http,https"
       - "traefik.frontend.redirect.entryPoint=https"
+    ports:
+      - 8000:80
     networks:
       - web
       - internal
