@@ -23,18 +23,22 @@ class TimeAdmin(admin.ModelAdmin):
 
 @admin.register(Pool)
 class PoolAdmin(ExportMixin, admin.ModelAdmin):
-    list_display = ('name', 'get_groups', 'get_departments')
-    filter_horizontal = ('departments', 'groups')
+    list_display = ('name', 'get_systems', 'get_groups', 'get_departments')
+    filter_horizontal = ('departments', 'groups', 'systems')
     resource_class = VoteResources
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        return qs.prefetch_related('departments', 'groups')
+        return qs.prefetch_related('departments', 'groups', 'systems')
 
     def get_export_queryset(self, request):
         return Vote.objects \
             .select_related('candidate__pool') \
             .order_by('candidate__pool__name', 'std_no')
+
+    @short_description('可參與學制')
+    def get_systems(self, obj):
+        return ', '.join([g.name for g in obj.systems.all()])
 
     @short_description('可參與科系')
     def get_departments(self, obj):

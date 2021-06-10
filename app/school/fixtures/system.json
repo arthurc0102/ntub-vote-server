@@ -1,0 +1,12 @@
+[
+  {
+    "model": "school.system",
+    "pk": 1,
+    "fields": { "name": "\u65e5\u9593\u90e8" }
+  },
+  {
+    "model": "school.system",
+    "pk": 2,
+    "fields": { "name": "\u591c\u9593\u90e8" }
+  }
+]

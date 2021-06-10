@@ -48,3 +48,14 @@ class Student(models.Model):
 
     def __str__(self):
         return self.std_no
+
+
+class System(models.Model):
+    name = models.CharField('學制名稱', max_length=15, unique=True)
+
+    class Meta:
+        verbose_name = '學制'
+        verbose_name_plural = '學制'
+
+    def __str__(self):
+        return self.name

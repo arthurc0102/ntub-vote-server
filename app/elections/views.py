@@ -33,9 +33,10 @@ class PoolViewSet(viewsets.ReadOnlyModelViewSet):
 
         if self.action in ['list', 'retrieve']:
             queryset = queryset.filter(
-                Q(departments__name=self.request.user.dept_print) |
-                Q(groups__student__std_no=self.request.user.std_no)
-            )
+                systems__name=self.request.user.send_edu[-3:])
+            queryset = queryset.filter(
+                Q(departments__name=self.request.user.dept_print)
+                | Q(groups__student__std_no=self.request.user.std_no))
 
         if self.action == 'list':
             queryset = queryset \

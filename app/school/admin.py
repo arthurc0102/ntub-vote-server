@@ -4,19 +4,19 @@ from import_export.admin import ImportMixin
 
 from util.admin.decorators import short_description
 
-from .models import Department, Group, Student
+from .models import Department, Group, Student, System
 from .resources import StudentResources
 
 
-@admin.register(Department, Group)
+@admin.register(Department, Group, System)
 class DisplayNameAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', )
 
 
 @admin.register(Student)
 class StudentAdmin(ImportMixin, admin.ModelAdmin):
     list_display = ('std_no', 'get_groups')
-    filter_horizontal = ('groups',)
+    filter_horizontal = ('groups', )
     resource_class = StudentResources
 
     def get_queryset(self, request):

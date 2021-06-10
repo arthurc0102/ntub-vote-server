@@ -3,7 +3,7 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
 
-from app.school.models import Department, Group
+from app.school.models import Department, Group, System
 
 
 class Time(models.Model):
@@ -55,6 +55,7 @@ class Pool(models.Model):
         verbose_name='可參與科系',
         blank=True,
     )
+    systems = models.ManyToManyField(System, verbose_name='可參與學制', blank=True)
 
     class Meta:
         verbose_name = '選舉類型'

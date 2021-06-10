@@ -6,7 +6,7 @@ from config.components.api import NTUB_API_URL, NTUB_API_HEADERS
 from rest_framework.exceptions import AuthenticationFailed
 
 
-INFO_KEYS = ['std_no', 'std_name', 'dept_print']
+INFO_KEYS = ['std_no', 'std_name', 'dept_print', 'send_edu']
 
 
 def get_student_info(std_no, keys=INFO_KEYS):
