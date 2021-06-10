@@ -55,7 +55,7 @@ class Pool(models.Model):
         verbose_name='可參與科系',
         blank=True,
     )
-    systems = models.ManyToManyField(System, verbose_name='可參與學制', blank=True)
+    systems = models.ManyToManyField(System, verbose_name='可參與學制')
 
     class Meta:
         verbose_name = '選舉類型'
